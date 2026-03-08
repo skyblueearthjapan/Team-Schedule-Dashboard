@@ -20,8 +20,8 @@
         { src: iconDataUri, sizes: "512x512", type: "image/jpeg" }
       ],
       display: "standalone",
-      background_color: "#EAF5EE",
-      theme_color: "#3E8E6D"
+      background_color: "#eef2f9",
+      theme_color: "#2c4a7c"
     };
     const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
     const link = document.createElement("link");
@@ -31,23 +31,25 @@
   </script>
 
   <style>
-    /* ====== Theme Tokens ====== */
+    /* ====== Theme Tokens — 桜井電装 Blue + Gold + Sakura ====== */
     :root {
-      --bg: #EAF5EE;
+      --bg: #eef2f9;
       --surface: #FFFFFF;
-      --green: #6FBF8E;
-      --green-dark: #3E8E6D;
+      --primary: #5c7cba;
+      --primary-dark: #2c4a7c;
+      --sakura: #f0b8c8;
+      --sakura-soft: rgba(240, 184, 200, 0.18);
+      --gold: #c9a84c;
+      --gold-bright: #f6e27a;
       --text: #2E2E2E;
       --text-sub: #6B6B6B;
-      --orange: #F5A623;
-      --orange-soft: #FFD8A8;
 
       --radius: 16px;
       --radius-lg: 22px;
       --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.08);
       --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.12);
       --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16);
-      --ring: 0 0 0 3px rgba(111, 191, 142, 0.22);
+      --ring: 0 0 0 3px rgba(92, 124, 186, 0.22);
     }
 
     /* ====== Base ====== */
@@ -59,8 +61,8 @@
       margin: 0;
       font-family: system-ui, -apple-system, "Segoe UI", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
       background:
-        radial-gradient(1100px 420px at 20% 0%, rgba(111, 191, 142, 0.18), transparent 60%),
-        radial-gradient(900px 360px at 80% 10%, rgba(245, 166, 35, 0.10), transparent 55%),
+        radial-gradient(1100px 420px at 20% 0%, rgba(92, 124, 186, 0.15), transparent 60%),
+        radial-gradient(900px 360px at 80% 10%, rgba(240, 184, 200, 0.12), transparent 55%),
         var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -81,7 +83,7 @@
     .header {
       position: relative;
       background: rgba(255, 255, 255, 0.55);
-      border: 1px solid rgba(111, 191, 142, 0.35);
+      border: 1px solid rgba(92, 124, 186, 0.30);
       border-radius: var(--radius-lg);
       padding: 18px 18px 14px;
       box-shadow: var(--shadow-sm);
@@ -100,7 +102,7 @@
     .title {
       font-size: 24px;
       font-weight: 800;
-      color: var(--green-dark);
+      color: var(--primary-dark);
       letter-spacing: 0.02em;
       display: flex;
       align-items: center;
@@ -111,9 +113,18 @@
       font-size: 14px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(111, 191, 142, 0.14);
-      border: 1px solid rgba(111, 191, 142, 0.30);
-      color: var(--green-dark);
+      background: rgba(92, 124, 186, 0.12);
+      border: 1px solid rgba(92, 124, 186, 0.25);
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    /* Header brand subtitle */
+    .headerBrand {
+      margin-top: 4px;
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 2px;
       font-weight: 700;
     }
 
@@ -124,11 +135,11 @@
       padding: 10px 16px;
       border-radius: 999px;
       background: var(--surface);
-      border: 1px solid rgba(111, 191, 142, 0.50);
+      border: 1px solid rgba(92, 124, 186, 0.40);
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
       font-weight: 700;
       font-size: 14px;
-      color: var(--green-dark);
+      color: var(--primary-dark);
       transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
       user-select: none;
       cursor: pointer;
@@ -137,7 +148,7 @@
     .btn:hover {
       transform: translateY(-1px);
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
-      border-color: rgba(245, 166, 35, 0.70);
+      border-color: var(--gold);
     }
 
     .btn:active {
@@ -149,7 +160,7 @@
       box-shadow: var(--ring), 0 4px 14px rgba(0, 0, 0, 0.06);
     }
 
-    /* Orange flow line */
+    /* Gold flow line with shimmer animation */
     .flow {
       margin-top: 12px;
       height: 26px;
@@ -161,12 +172,18 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(180px 22px at 15% 50%, rgba(245, 166, 35, 0.30), transparent 70%),
-        radial-gradient(220px 26px at 55% 50%, rgba(245, 166, 35, 0.24), transparent 72%),
-        radial-gradient(180px 22px at 85% 50%, rgba(245, 166, 35, 0.28), transparent 70%);
+        radial-gradient(180px 22px at 15% 50%, rgba(201, 168, 76, 0.35), transparent 70%),
+        radial-gradient(220px 26px at 55% 50%, rgba(246, 226, 122, 0.28), transparent 72%),
+        radial-gradient(180px 22px at 85% 50%, rgba(201, 168, 76, 0.32), transparent 70%);
       filter: blur(0.2px);
       opacity: 0.9;
       transform: skewX(-10deg);
+      animation: flowShimmer 5s ease-in-out infinite;
+    }
+
+    @keyframes flowShimmer {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
     }
 
     .flow::after {
@@ -176,9 +193,22 @@
       right: -10%;
       top: 50%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.65), transparent);
+      background: linear-gradient(90deg,
+        transparent,
+        var(--gold) 30%,
+        var(--gold-bright) 50%,
+        var(--gold) 70%,
+        transparent
+      );
+      background-size: 200% 100%;
+      animation: goldLineFlow 4s ease-in-out infinite;
       transform: translateY(-50%);
-      opacity: 0.8;
+    }
+
+    @keyframes goldLineFlow {
+      0% { background-position: 100% 0; }
+      50% { background-position: 0% 0; }
+      100% { background-position: 100% 0; }
     }
 
     /* ====== Grid ====== */
@@ -193,7 +223,7 @@
     .card {
       position: relative;
       background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(111, 191, 142, 0.40);
+      border: 1px solid rgba(92, 124, 186, 0.30);
       border-radius: var(--radius);
       box-shadow: var(--shadow-sm);
       overflow: hidden;
@@ -206,14 +236,14 @@
     .card:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-md);
-      border-color: rgba(245, 166, 35, 0.65);
+      border-color: var(--gold);
     }
 
     .card:focus-within {
       box-shadow: var(--shadow-md), var(--ring);
     }
 
-    /* all cards have orange left line */
+    /* all cards have gold left line */
     .card.small::before,
     .card.wide::before,
     .card.tall::before,
@@ -224,7 +254,7 @@
       top: 0;
       bottom: 0;
       width: 5px;
-      background: linear-gradient(180deg, rgba(245, 166, 35, 0.95), rgba(245, 166, 35, 0.25));
+      background: linear-gradient(180deg, rgba(201, 168, 76, 0.95), rgba(201, 168, 76, 0.25));
       z-index: 10;
     }
 
@@ -250,7 +280,7 @@
       );
     }
 
-    /* Card without image - add subtle green pattern */
+    /* Card without image - subtle blue + sakura pattern */
     .card.no-image::after {
       content: "";
       position: absolute;
@@ -258,7 +288,7 @@
       height: 220px;
       left: -120px;
       top: -120px;
-      background: radial-gradient(circle at 60% 60%, rgba(111, 191, 142, 0.22), transparent 60%);
+      background: radial-gradient(circle at 60% 60%, rgba(92, 124, 186, 0.15), var(--sakura-soft) 40%, transparent 60%);
       transform: rotate(12deg);
       pointer-events: none;
     }
@@ -280,7 +310,7 @@
       height: 44px;
       border-radius: 14px;
       background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(111, 191, 142, 0.30);
+      border: 1px solid rgba(92, 124, 186, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -298,7 +328,7 @@
     .iconFallback {
       font-weight: 900;
       font-size: 14px;
-      color: var(--green-dark);
+      color: var(--primary-dark);
     }
 
     .labelWrap {
@@ -308,7 +338,7 @@
     .label {
       font-size: 20px;
       font-weight: 900;
-      color: #2D6B50;
+      color: var(--primary-dark);
       line-height: 1.2;
       text-shadow: 0 1px 4px rgba(255, 255, 255, 1), 0 0px 8px rgba(255, 255, 255, 0.7);
     }
@@ -362,7 +392,7 @@
     }
 
     .empty h2 {
-      color: var(--green-dark);
+      color: var(--primary-dark);
       margin: 0 0 12px;
     }
 
@@ -371,10 +401,17 @@
       margin-top: 14px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       gap: 10px;
       color: var(--text-sub);
       font-size: 12px;
       padding: 0 4px;
+    }
+
+    .footerBrand {
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
 
     /* ====== Responsive ====== */
@@ -432,6 +469,11 @@
       .btn:hover {
         transform: none;
       }
+
+      .flow::before,
+      .flow::after {
+        animation: none;
+      }
     }
   </style>
 </head>
@@ -452,6 +494,7 @@
         <div class="title">
           <?= dashboardTitle ?>
           <span class="badge">WebPortal</span>
+          <div class="headerBrand">SAKURAI DENSO</div>
         </div>
       </div>
       <div class="flow" aria-hidden="true"></div>
@@ -503,6 +546,7 @@
     <div class="footer">
       <div>※ ボタンは別タブで開きます（既定）</div>
       <div>更新：<?= lastUpdated ?></div>
+      <div class="footerBrand">桜井電装 Team Dashboard</div>
     </div>
 
   </div>
