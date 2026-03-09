@@ -219,104 +219,97 @@
       gap: 14px;
     }
 
-    /* ====== Cards ====== */
+    /* ====== Pill Buttons ====== */
     .card {
       position: relative;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(92, 124, 186, 0.30);
-      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(238,242,249,0.90) 100%);
+      border: 1.5px solid rgba(92, 124, 186, 0.25);
+      border-radius: 999px;
       box-shadow: var(--shadow-sm);
       overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
       will-change: transform;
       display: flex;
-      flex-direction: column;
+      align-items: center;
     }
 
     .card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-2px) scale(1.015);
+      box-shadow: var(--shadow-md), 0 0 20px rgba(201, 168, 76, 0.15);
       border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(246,226,122,0.08) 100%);
+    }
+
+    .card:active {
+      transform: translateY(0px) scale(0.99);
+      box-shadow: var(--shadow-sm);
     }
 
     .card:focus-within {
       box-shadow: var(--shadow-md), var(--ring);
     }
 
-    /* all cards have gold left line */
-    .card.small::before,
-    .card.wide::before,
-    .card.tall::before,
-    .card.full::before {
+    /* Gold left accent (pill-adapted) */
+    .card::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 0;
-      bottom: 0;
-      width: 5px;
-      background: linear-gradient(180deg, rgba(201, 168, 76, 0.95), rgba(201, 168, 76, 0.25));
+      top: 18%;
+      bottom: 18%;
+      width: 4px;
+      border-radius: 0 4px 4px 0;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold));
       z-index: 10;
+      opacity: 0.85;
+      transition: opacity 0.2s ease, top 0.2s ease, bottom 0.2s ease;
     }
 
-    /* Background image container */
-    .cardBg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+    .card:hover::before {
+      opacity: 1;
+      top: 12%;
+      bottom: 12%;
     }
 
-    /* Gradient overlay for readability */
-    .cardBg::after {
+    /* Subtle sakura glow on right side */
+    .card::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0.85) 100%
-      );
-    }
-
-    /* Card without image - subtle blue + sakura pattern */
-    .card.no-image::after {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      left: -120px;
-      top: -120px;
-      background: radial-gradient(circle at 60% 60%, rgba(92, 124, 186, 0.15), var(--sakura-soft) 40%, transparent 60%);
-      transform: rotate(12deg);
+      right: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, var(--sakura-soft) 0%, transparent 70%);
       pointer-events: none;
+      opacity: 0.5;
+      z-index: 1;
     }
 
     /* Card content */
     .cardContent {
       position: relative;
       z-index: 5;
-      padding: 16px;
-      margin-top: auto;
+      padding: 14px 28px 14px 22px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      width: 100%;
     }
 
-    /* Icon (shown when no background image or as small badge) */
+    /* Icon badge - circular */
     .icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(92, 124, 186, 0.25);
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      border: 2px solid rgba(255, 255, 255, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       flex: 0 0 auto;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(44, 74, 124, 0.25);
     }
 
     .icon img {
@@ -326,34 +319,54 @@
     }
 
     .iconFallback {
-      font-weight: 900;
-      font-size: 14px;
-      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 13px;
+      color: #fff;
+      letter-spacing: 0.5px;
     }
 
     .labelWrap {
       flex: 1;
+      min-width: 0;
     }
 
     .label {
-      font-size: 20px;
-      font-weight: 900;
+      font-size: 17px;
+      font-weight: 800;
       color: var(--primary-dark);
-      line-height: 1.2;
-      text-shadow: 0 1px 4px rgba(255, 255, 255, 1), 0 0px 8px rgba(255, 255, 255, 0.7);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .desc {
-      margin-top: 4px;
-      font-size: 14px;
+      margin-top: 2px;
+      font-size: 12px;
       color: var(--text-sub);
-      text-shadow: 0 1px 4px rgba(255, 255, 255, 1), 0 0px 8px rgba(255, 255, 255, 0.7);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Arrow indicator on right */
+    .cardArrow {
+      flex: 0 0 auto;
+      color: var(--gold);
+      font-size: 18px;
+      opacity: 0.5;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .card:hover .cardArrow {
+      opacity: 1;
+      transform: translateX(3px);
     }
 
     .cardLink {
       position: absolute;
       inset: 0;
-      border-radius: var(--radius);
+      border-radius: 999px;
       outline: none;
       z-index: 20;
     }
@@ -365,22 +378,77 @@
     /* Layout sizes -> 12-col grid */
     .small {
       grid-column: span 4;
-      min-height: 140px;
+      height: 64px;
     }
 
     .wide {
-      grid-column: span 8;
-      min-height: 140px;
+      grid-column: span 6;
+      height: 72px;
+    }
+
+    .wide .label {
+      font-size: 19px;
+    }
+
+    .wide .icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+    }
+
+    .wide .iconFallback {
+      font-size: 14px;
     }
 
     .tall {
       grid-column: span 4;
-      min-height: 280px;
+      height: 140px;
+      border-radius: 32px;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .tall .cardContent {
+      flex-direction: column;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .tall .icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+    }
+
+    .tall .iconFallback {
+      font-size: 15px;
+    }
+
+    .tall .cardArrow {
+      display: none;
+    }
+
+    .tall .label {
+      white-space: normal;
     }
 
     .full {
       grid-column: span 12;
-      min-height: 140px;
+      height: 76px;
+    }
+
+    .full .label {
+      font-size: 21px;
+    }
+
+    .full .icon {
+      width: 52px;
+      height: 52px;
+      min-width: 52px;
+    }
+
+    .full .iconFallback {
+      font-size: 15px;
     }
 
     /* ====== Empty State ====== */
@@ -426,7 +494,6 @@
 
       .tall {
         grid-column: span 6;
-        min-height: 220px;
       }
     }
 
@@ -445,11 +512,12 @@
       .tall,
       .full {
         grid-column: span 12;
-        min-height: 120px;
+        height: auto;
+        min-height: 56px;
       }
 
-      .tall {
-        min-height: 160px;
+      .cardContent {
+        padding: 12px 20px 12px 18px;
       }
 
       .footer {
@@ -484,7 +552,7 @@
     <header class="header">
       <div class="headerRow">
         <? if (portalUrl) { ?>
-          <a class="btn" href="<?= portalUrl ?>" target="_blank" rel="noopener">
+          <a class="btn" href="<?= portalUrl ?>" target="_self">
             <span aria-hidden="true">&#127968;</span> 社内ポータルへ
           </a>
         <? } else { ?>
@@ -505,25 +573,16 @@
       <? if (hasApps) { ?>
         <? for (var i = 0; i < apps.length; i++) { ?>
           <? var a = apps[i]; ?>
-          <section class="card <?= a.layout ?> <?= a.iconUrl ? '' : 'no-image' ?>" aria-label="<?= a.label ?>">
+          <section class="card <?= a.layout ?>" aria-label="<?= a.label ?>">
             <a class="cardLink"
                href="<?= a.url ?>"
-               target="<?= a.openMode === 'same_tab' ? '_self' : '_blank' ?>"
-               rel="noopener"
+               target="_self"
                title="<?= a.note ? a.note : a.label ?>"></a>
 
-            <? if (a.iconUrl) { ?>
-              <!-- Background image -->
-              <div class="cardBg" style="background-image: url('<?= a.iconUrl ?>');"></div>
-            <? } ?>
-
             <div class="cardContent">
-              <? if (!a.iconUrl) { ?>
-                <!-- Fallback icon when no image -->
-                <div class="icon" aria-hidden="true">
-                  <span class="iconFallback"><?= a.label.substring(0, 2) ?></span>
-                </div>
-              <? } ?>
+              <div class="icon" aria-hidden="true">
+                <span class="iconFallback"><?= a.label.substring(0, 2) ?></span>
+              </div>
 
               <div class="labelWrap">
                 <div class="label"><?= a.label ?></div>
@@ -531,6 +590,8 @@
                   <div class="desc"><?= a.note ?></div>
                 <? } ?>
               </div>
+
+              <span class="cardArrow" aria-hidden="true">&#10095;</span>
             </div>
           </section>
         <? } ?>
@@ -544,7 +605,7 @@
 
     <!-- Footer -->
     <div class="footer">
-      <div>※ ボタンは別タブで開きます（既定）</div>
+      <div></div>
       <div>更新：<?= lastUpdated ?></div>
       <div class="footerBrand">桜井電装 Team Dashboard</div>
     </div>
